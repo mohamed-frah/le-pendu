@@ -1,3 +1,4 @@
+
 import pygame
 import random
 import sys
@@ -15,7 +16,7 @@ ecran = pygame.display.set_mode((largeur, hauteur))
 pygame.display.set_caption('Jeu du Pendu')
 
 # Chargement des images du pendu
-images_pendu = [pygame.image.load(f"images_pendu/{i}.png") for i in range(7)]
+
 
 # Liste de mots pour le jeu
 liste_mots = ['rooney', 'zidane', 'ronaldo', 'neymar', 'messi', 'hazard','kimmich', 'benzema', 'maradona', 'xavi', 'mbappe', 'pogba', 'kante', 'drogba', 'nasri']
@@ -30,6 +31,42 @@ lettres_trouvees = []
 lettres_proposees = []
 nb_essais = 0
 
+
+def les_erreurs(i):
+    # [Le code de dessin du pendu]
+    # Base
+    for i in range(10): 
+        if i == 1:
+            pygame.draw.line(ecran, BLANC, (50, 500), (150, 500), 5)
+    # Poteau
+        if i ==2:
+            pygame.draw.line(ecran, BLANC, (100, 500), (100, 100), 5)
+    # Traverse
+        if i ==3:
+            pygame.draw.line(ecran, BLANC, (100, 100), (300, 100), 5)
+    # Corde
+        if i ==4:
+            pygame.draw.line(ecran, BLANC, (300, 100), (300, 150), 5)
+    # Tête
+        if i==5:
+            pygame.draw.circle(ecran, BLANC, (300, 180), 30, 5)
+    # Corps
+        if i ==6:
+            pygame.draw.line(ecran, BLANC, (300, 210), (300, 350), 5)
+    # Bras gauche
+        if i==7:
+            pygame.draw.line(ecran, BLANC, (300, 250), (250, 300), 5)
+    # Bras droit
+        if i==8:
+            pygame.draw.line(ecran, BLANC, (300, 250), (350, 300), 5)
+    # Jambe gauche
+        if i==9:
+            pygame.draw.line(ecran, BLANC, (300, 350), (250, 400), 5)
+    # Jambe droite
+        if i==10:
+            pygame.draw.line(ecran, BLANC, (300, 350), (350, 400), 5)
+    print(i)
+    
 # Fonction pour dessiner le texte
 def dessiner_texte(texte, x, y, taille, couleur):
     font = pygame.font.Font(None, taille)
@@ -37,8 +74,8 @@ def dessiner_texte(texte, x, y, taille, couleur):
     ecran.blit(surface_texte, (x, y))
 
 # Fonction pour dessiner le pendu
-def dessiner_pendu():
-    ecran.blit(images_pendu[nb_essais], (50, 50))
+
+    
 
 # Fonction pour afficher les lettres
 def afficher_lettres():
@@ -72,8 +109,10 @@ def jouer():
                         else:
                             nb_essais += 1
 
-        dessiner_pendu()
+        
         afficher_lettres()
+        
+
 
         # Vérifier si le joueur a gagné ou perdu
         if all(lettre in lettres_trouvees for lettre in mot_a_deviner):
@@ -87,3 +126,4 @@ def jouer():
 
 # Lancement du jeu
 jouer()
+
